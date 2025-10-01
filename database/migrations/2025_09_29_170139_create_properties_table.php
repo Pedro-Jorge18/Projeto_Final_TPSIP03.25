@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('properties', function (Blueprint $table) {
             $table->id();
             $table->foreignId('owner_id')->constrained('owners');
+            $table->decimal('value_diary', 8, 2);
             $table->string('district');
             $table->string('advice');
             $table->string('prop_type');
