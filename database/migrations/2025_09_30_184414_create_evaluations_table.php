@@ -19,6 +19,11 @@ return new class extends Migration
             $table->string('description')->nullable();
             $table->date('date');
             $table->timestamps();
+
+            $table->index(['property_id']);        // avaliações de uma propriedade
+            $table->index(['client_id']);          // avaliações de um cliente
+            $table->index(['evaluation']);       // filtrar por nota
+            $table->index(['date']);                //por data
         });
     }
 

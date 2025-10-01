@@ -17,6 +17,9 @@ return new class extends Migration
             $table->foreignId('property_id')->constrained('properties')->ondelete('cascade');
             $table->timestamps();
             $table->primary(['client_id', 'property_id']);
+
+            $table->index(['client_id']);          // favoritos do cliente
+            $table->index(['property_id']);         //quem escolheu como favorito
         });
     }
 
