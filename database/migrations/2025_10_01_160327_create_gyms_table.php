@@ -11,15 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('reserves', function (Blueprint $table) {
+        Schema::create('gyms', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('property_id')->constrained('properties');
-            $table->foreignId('client_id')->constrained('clients');
-            $table->date('start_date');
-            $table->date('end_date');
+            $table->foreignId('property_id')->constrained('properties')->OnDelete('cascade');
+            $table->integer('capacity');
             $table->timestamps();
 
-            $table->index(['start_date', 'end_date']);   //Ver disponibilidade
+            $table->index(['property_id']);  //o indices para buscas frequentes
         });
     }
 
@@ -28,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('reserves');
+        Schema::dropIfExists('gyms');
     }
 };

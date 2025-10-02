@@ -17,6 +17,9 @@ return new class extends Migration
             $table->string('nif');
             $table->date('birth_date');
             $table->timestamps();
+
+            $table->index(['nif']);                //       buscar por NIF
+            $table->index(['created_at']);          // por data
         });
     }
 

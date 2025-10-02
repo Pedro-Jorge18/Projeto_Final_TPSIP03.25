@@ -10,6 +10,11 @@ class Client extends Model
     /** @use HasFactory<\Database\Factories\ClientFactory> */
     use HasFactory;
 
+    protected $fillable = [
+        'name',
+        'nif',
+        'birth_date',
+    ];
     public function reserve()
     {
         return $this->hasMany(Reserve::class);
@@ -18,5 +23,10 @@ class Client extends Model
     public function evaluation()
     {
         return $this->hasMany(Evaluation::class);
+    }
+
+    public function favorites()
+    {
+        return $this->hasMany(Favorite::class);
     }
 }
