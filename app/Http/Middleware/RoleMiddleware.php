@@ -15,11 +15,10 @@ class RoleMiddleware
      */
     public function handle(Request $request, Closure $next, string $role): Response
     {
-        //check if the user is authenticated and check if user has the required role
-        if(!$request->user() || !$request->user()->hasRole($role)){
-            return response()->json([
-                'message' => 'Access denied. Not permitted.'
-            ], 403);
+
+        $user = $request->user();
+        if (! $user || $user->role !== $role) {
+            return response()->json(['message' => 'Forbidden'], 403);
         }
 
         return $next($request);
